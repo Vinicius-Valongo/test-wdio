@@ -78,11 +78,11 @@ jobs:
     - name: Check test results
       if: always()
       run: |
-        if [ -f "allure-results" ]; then
+        if [ -d "allure-results" ] && [ "$(ls -A allure-results)" ]; then
           echo "✅ Tests executed successfully"
           exit 0
         else
-          echo "❌ Tests failed"
+          echo "❌ Tests failed or no results generated"
           exit 1
         fi
     
