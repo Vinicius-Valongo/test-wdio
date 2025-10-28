@@ -55,11 +55,14 @@ jobs:
     
     - name: Run tests on Android Emulator
       uses: reactivecircus/android-emulator-runner@v2
+      timeout-minutes: 15
       with:
         api-level: ${{ matrix.api-level }}
         target: ${{ matrix.target }}
         arch: x86_64
         profile: Nexus 6
+        emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+        disable-animations: true
         script: |
           appium &
           sleep 10
