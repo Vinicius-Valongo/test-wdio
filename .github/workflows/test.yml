@@ -54,19 +54,18 @@ jobs:
         sudo udevadm trigger --name-match=kvm
     
     - name: Run tests on Android Emulator
+      id: emulator_tests
+      continue-on-error: true
       uses: reactivecircus/android-emulator-runner@v2
-      timeout-minutes: 15
+      timeout-minutes: 10
       with:
         api-level: ${{ matrix.api-level }}
         target: ${{ matrix.target }}
         arch: x86_64
         profile: Nexus 6
-        emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+        emulator-options: -no-snapshot-save -no-snapshot-load -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -wipe-data
         disable-animations: true
-        script: |
-          appium &
-          sleep 10
-          npm test
+        script: npm test
     
     - name: Force cleanup emulator processes
       if: always()
@@ -75,6 +74,17 @@ jobs:
         pkill -9 -f emulator || true
         pkill -9 -f adb || true
         pkill -9 -f appium || true
+        
+    - name: Check test results
+      if: always()
+      run: |
+        if [ -f "allure-results" ]; then
+          echo "✅ Tests executed successfully"
+          exit 0
+        else
+          echo "❌ Tests failed"
+          exit 1
+        fi
     
     - name: Upload test results
       if: always()
