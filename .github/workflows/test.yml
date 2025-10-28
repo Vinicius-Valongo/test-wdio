@@ -68,6 +68,14 @@ jobs:
           sleep 10
           npm test
     
+    - name: Force cleanup emulator processes
+      if: always()
+      run: |
+        pkill -9 -f qemu-system || true
+        pkill -9 -f emulator || true
+        pkill -9 -f adb || true
+        pkill -9 -f appium || true
+    
     - name: Upload test results
       if: always()
       uses: actions/upload-artifact@v4
