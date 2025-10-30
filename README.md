@@ -1,15 +1,3 @@
-# 🤖 WebDriverIO - Automação Mobile Android# 🤖 WebDriverIO - Automação Mobile Android# WebDriverIO Mobile Automation# WebDriverIO Mobile Automation# 🤖 WebDriverIO Mobile Test Automation# 🤖 WebDriverIO - Automação de Testes Mobile Android# 🤖 WebDriverIO Native Demo App - Automação de Testes Mobile
-
-
-
-Automação de testes mobile Android com WebDriverIO + Appium.
-
-
-
----Automação de testes mobile Android com WebDriverIO + Appium.
-
-
-
 ## ⚙️ Configuração do Ambiente
 
 
