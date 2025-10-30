@@ -1,13 +1,7 @@
 const BasePage = require('./base.page');
 
-/**
- * Swipe Page Object
- * Representa a tela de Swipe do aplicativo
- */
 class SwipePage {
-    /**
-     * Seletores dos elementos da tela Swipe
-     */
+
     get swipeContainer() {
         return $('~Swipe-screen');
     }
@@ -38,26 +32,19 @@ class SwipePage {
         return $(`(//*[@content-desc="card"])[${index}]`);
     }
 
-    /**
-     * Aguarda a tela de Swipe estar visível
-     */
+
     async waitForSwipeScreen() {
         await BasePage.waitForElement(this.swipeContainer);
     }
 
-    /**
-     * Realiza swipe para a esquerda
-     */
     async swipeLeft() {
         const { width, height } = await driver.getWindowSize();
         
-        // Coordenadas para swipe horizontal (direita para esquerda)
         const left = Math.floor(width * 0.1);
         const top = Math.floor(height * 0.4);
         const swipeWidth = Math.floor(width * 0.8);
         const swipeHeight = Math.floor(height * 0.2);
         
-        // Usando mobile: swipeGesture que é suportado pelo UiAutomator2
         await driver.execute('mobile: swipeGesture', {
             left,
             top,
@@ -67,12 +54,9 @@ class SwipePage {
             percent: 0.75
         });
         
-        await driver.pause(1500); // Aguarda animação do carousel
+        await driver.pause(1500);
     }
 
-    /**
-     * Realiza swipe para a direita
-     */
     async swipeRight() {
         const { width, height } = await driver.getWindowSize();
         const startX = width * 0.2;
@@ -101,15 +85,15 @@ class SwipePage {
      * @returns {Promise<string>}
      */
     async getSlideText() {
-        // Aguarda animação do swipe
+
         await driver.pause(1000);
         
         try {
-            // Tenta usar o seletor principal
+
             await BasePage.waitForElement(this.slideText);
             return await BasePage.getText(this.slideText);
         } catch (error) {
-            // Se falhar, tenta seletor alternativo
+
             console.log('Tentando seletor alternativo para slideText...');
             await BasePage.waitForElement(this.slideTextAlternative);
             return await BasePage.getText(this.slideTextAlternative);
@@ -137,7 +121,7 @@ class SwipePage {
      * @param {number} slideNumber - Número do slide (1-6)
      */
     async navigateToSlide(slideNumber) {
-        // Começa do slide 1
+
         for (let i = 1; i < slideNumber; i++) {
             await this.swipeLeft();
         }

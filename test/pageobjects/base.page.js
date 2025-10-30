@@ -1,7 +1,4 @@
-/**
- * Base Page Object
- * Contém métodos comuns utilizados por todas as páginas
- */
+
 class BasePage {
     /**
      * Aguarda um elemento estar visível
@@ -63,14 +60,11 @@ class BasePage {
         await element.scrollIntoView();
     }
 
-    /**
-     * Esconde o teclado
-     */
+    
     async hideKeyboard() {
         try {
             await driver.hideKeyboard();
         } catch (error) {
-            // Ignora se o teclado não estiver visível
             console.log('Teclado já estava oculto ou não pôde ser escondido');
         }
     }

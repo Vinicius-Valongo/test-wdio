@@ -1,13 +1,8 @@
 const BasePage = require('./base.page');
 
-/**
- * Forms Page Object
- * Representa a tela de Formulários do aplicativo
- */
+
 class FormsPage {
-    /**
-     * Seletores dos elementos da tela Forms
-     */
+
     get formsContainer() {
         return $('~Forms-screen');
     }
@@ -40,9 +35,7 @@ class FormsPage {
         return $('//*[@resource-id="android:id/button1"]');
     }
 
-    /**
-     * Aguarda a tela de Forms estar visível
-     */
+
     async waitForFormsScreen() {
         await BasePage.waitForElement(this.formsContainer);
     }
@@ -56,9 +49,7 @@ class FormsPage {
         await BasePage.hideKeyboard();
     }
 
-    /**
-     * Alterna o switch
-     */
+
     async toggleSwitch() {
         await BasePage.clickElement(this.switchElement);
     }

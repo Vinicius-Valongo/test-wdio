@@ -1,13 +1,7 @@
 const BasePage = require('./base.page');
 
-/**
- * Login Page Object
- * Representa a tela de Login/Cadastro do aplicativo
- */
 class LoginPage {
-    /**
-     * Seletores dos elementos da tela Login
-     */
+
     get loginContainer() {
         return $('~Login-screen');
     }
@@ -20,7 +14,7 @@ class LoginPage {
         return $('~button-login-container');
     }
 
-    // Campos de Login
+
     get loginEmailInput() {
         return $('~input-email');
     }
@@ -33,7 +27,7 @@ class LoginPage {
         return $('~button-LOGIN');
     }
 
-    // Mensagens de validação inline (abaixo dos campos)
+
     get emailValidationMessage() {
         return $('android=new UiSelector().textContains("Please enter a valid email address")');
     }
@@ -46,7 +40,6 @@ class LoginPage {
         return $('android=new UiSelector().textContains("Please enter the same password")');
     }
 
-    // Campos de Sign Up
     get signUpEmailInput() {
         return $('~input-email');
     }
@@ -63,7 +56,6 @@ class LoginPage {
         return $('~button-SIGN UP');
     }
 
-    // Mensagens
     get successMessage() {
         return $('//*[@resource-id="android:id/message"]');
     }
@@ -76,24 +68,18 @@ class LoginPage {
         return $('//*[@resource-id="android:id/button1"]');
     }
 
-    /**
-     * Aguarda a tela de Login estar visível
-     */
+
     async waitForLoginScreen() {
         await BasePage.waitForElement(this.loginContainer);
     }
 
-    /**
-     * Alterna para a aba de Sign Up
-     */
+
     async switchToSignUp() {
         await BasePage.clickElement(this.signUpTab);
         await driver.pause(500);
     }
 
-    /**
-     * Alterna para a aba de Login
-     */
+
     async switchToLogin() {
         await BasePage.clickElement(this.loginTab);
         await driver.pause(500);
@@ -145,9 +131,7 @@ class LoginPage {
         return await BasePage.getText(this.errorMessage);
     }
 
-    /**
-     * Fecha o alerta clicando em OK
-     */
+
     async closeAlert() {
         await BasePage.clickElement(this.alertOkButton);
     }

@@ -1,8 +1,3 @@
-/**
- * Reporter Helper
- * Funções auxiliares para geração de evidências e relatórios
- */
-
 const allure = require('@wdio/allure-reporter').default;
 const fs = require('fs-extra');
 const path = require('path');
@@ -129,9 +124,7 @@ class ReporterHelper {
         }
     }
 
-    /**
-     * Adiciona informações do dispositivo
-     */
+
     static async addDeviceInfo() {
         try {
             const capabilities = driver.capabilities;
@@ -149,9 +142,7 @@ class ReporterHelper {
         }
     }
 
-    /**
-     * Adiciona logs do console
-     */
+
     static async addConsoleLogs() {
         try {
             const logs = await driver.getLogs('logcat').catch(() => []);
@@ -166,9 +157,7 @@ class ReporterHelper {
         }
     }
 
-    /**
-     * Adiciona informações do ambiente de teste
-     */
+
     static addEnvironmentInfo() {
         const environmentInfo = {
             nodeVersion: process.version,

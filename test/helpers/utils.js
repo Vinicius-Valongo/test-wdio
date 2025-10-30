@@ -1,8 +1,3 @@
-/**
- * Helper Utilities
- * Funções auxiliares para os testes
- */
-
 class Helpers {
     /**
      * Gera um email aleatório para testes
@@ -55,9 +50,6 @@ class Helpers {
         return await driver.getWindowSize();
     }
 
-    /**
-     * Realiza scroll até o final da tela
-     */
     static async scrollToBottom() {
         const { width, height } = await this.getScreenSize();
         await driver.performActions([
@@ -76,9 +68,6 @@ class Helpers {
         ]);
     }
 
-    /**
-     * Realiza scroll até o topo da tela
-     */
     static async scrollToTop() {
         const { width, height } = await this.getScreenSize();
         await driver.performActions([
@@ -109,16 +98,10 @@ class Helpers {
         }
     }
 
-    /**
-     * Limpa o cache do aplicativo
-     */
     static async clearAppCache() {
         await driver.execute('mobile: clearApp', { appId: 'com.wdiodemoapp' });
     }
 
-    /**
-     * Reinicia o aplicativo
-     */
     static async restartApp() {
         await driver.closeApp();
         await driver.pause(1000);
@@ -149,9 +132,6 @@ class Helpers {
         await driver.setOrientation(orientation);
     }
 
-    /**
-     * Ativa o modo avião
-     */
     static async enableAirplaneMode() {
         await driver.execute('mobile: shell', {
             command: 'cmd',
@@ -159,9 +139,6 @@ class Helpers {
         });
     }
 
-    /**
-     * Desativa o modo avião
-     */
     static async disableAirplaneMode() {
         await driver.execute('mobile: shell', {
             command: 'cmd',

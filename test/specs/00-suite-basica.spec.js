@@ -88,7 +88,6 @@ describe('Suite Básica - 10 Testes Principais', () => {
             await BasePage.hideKeyboard();
             await BasePage.clickElement(LoginPage.signUpButton);
             
-            // Verifica se a mensagem de senhas diferentes inline está visível
             const isValidationVisible = await LoginPage.isPasswordMismatchVisible();
             expect(isValidationVisible).to.be.true;
         });
@@ -113,12 +112,12 @@ describe('Suite Básica - 10 Testes Principais', () => {
             await activeButton.click();
             await driver.pause(1500);
             
-            // Verifica se popup apareceu
+            
             const messagePopup = await FormsPage.messagePopup;
             const popupText = await messagePopup.getText();
             expect(popupText).to.include('This button is active');
             
-            // Clica em OK para fechar o popup
+            
             const okButton = await FormsPage.popupOkButton;
             await okButton.click();
             await driver.pause(500);
@@ -187,13 +186,10 @@ describe('Suite Básica - 10 Testes Principais', () => {
             await HomePage.navigateToForms();
             await FormsPage.waitForFormsScreen();
             
-            // Clica no botão Inactive (deve aparecer popup diferente)
             const inactiveButton = await FormsPage.inactiveButton;
             await inactiveButton.click();
             await driver.pause(1500);
             
-            // Verifica se popup apareceu (pode ter mensagem diferente ou não aparecer)
-            // Vamos verificar se o botão continua visível após o clique
             const isDisplayed = await inactiveButton.isDisplayed();
             expect(isDisplayed).to.be.true;
         });
